@@ -43,9 +43,16 @@ function hoursWorkedOnDate(date) {
 }
 
 function wagesEarnedOnDate(date) {
-    return hoursWorkedOnDate(date) * this.payPerHour
+    return hoursWorkedOnDate.call(this, date) * this.payPerHour
 }
 
+function findEmployeeByFirstName(collection, firstNameString) {
+    return collection.find(obj => obj.firstName === firstNameString )
+}
+
+function calculatePayroll(array) {
+    return array.reduce((runningtotal, element) => runningtotal + allWagesFor.call(element), 0)
+}
 /*
  We're giving you this function. Take a look at it, you might see some usage
  that's new and different. That's because we're avoiding a well-known, but
